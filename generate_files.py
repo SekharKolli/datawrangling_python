@@ -8,6 +8,7 @@ to filter these names using keywords.
 '''
 
 import random
+import re
 
 # --- Global Constants (Naming Conventions) ---
 PROJECTS = ["STARBURST", "GALAXY"]
@@ -60,14 +61,14 @@ def filter_filenames_method01(file_list: list[str], filter_keyword: str):
         file_list (list[str]): A list of generated filename strings.
         filter_keyword (str): The specific substring to locate.
     """
-    print(
-        f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
-
     # -----Method 01-----: Using string method find() to identify substring
     print("\n-----Method 01-----: Using string method find() to identify substring")
+    print(
+        f"Searching {len(file_list)} file(s) containing: '{filter_keyword}'")
+
     for fname in file_list:
         if fname.find(filter_keyword) != -1:
-            print(fname)
+            print(f"{fname.replace(filter_keyword, "📍"+filter_keyword+"📍")}")
 
 
 def filter_filenames_method02(file_list: list[str], filter_keyword: str):
@@ -82,15 +83,15 @@ def filter_filenames_method02(file_list: list[str], filter_keyword: str):
         file_list (list[str]): A list of generated filename strings.
         filter_keyword (str): The specific substring to locate and highlight.
     """
-    print(
-        f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
     # -----Method 02-----: Using list comprehension and in to filter
     print("\n-----Method 02-----: Using list comprehension and in to filter")
+    print(
+        f"Searching {len(file_list)} file(s) containing: '{filter_keyword}'")
     matches = [fname for fname in file_list if filter_keyword in fname]
 
     if matches:
         for match in matches:
-            print(f"{match.replace(filter_keyword, "["+filter_keyword+"]")}")
+            print(f"{match.replace(filter_keyword, "📍"+filter_keyword+"📍")}")
         print(f"{len(matches)} file(s) found matching that keyword.")
     else:
         print(" No files found matching that keyword.")
@@ -108,18 +109,17 @@ def filter_filenames_method03(file_list: list[str], filter_keyword: str):
         file_list (list[str]): A list of generated filename strings.
         filter_keyword (str): A string or regex pattern to match against filenames.
     """
-    print(
-        f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
     # -----Method 03-----: Using lambda, filter(), regex filter
     print("\n-----Method 03-----: Using lambda, filter(), regex filter")
-    import re
+    print(
+        f"Searching {len(file_list)} file(s) containing: '{filter_keyword}'")
 
     matches = list(filter(lambda fname: re.search(
         filter_keyword, fname), file_list))
 
     if matches:
         for match in matches:
-            print(f"{match.replace(filter_keyword, "["+filter_keyword+"]")}")
+            print(f"{match.replace(filter_keyword, "📍"+filter_keyword+"📍")}")
         print(f"{len(matches)} file(s) found matching that keyword.")
     else:
         print(" No files found matching that keyword.")
