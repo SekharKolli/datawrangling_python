@@ -51,11 +51,14 @@ def generate_filenames_path(no_of_files: int = 10):
 
 def filter_filenames_method01(file_list: list[str], filter_keyword: str):
     """
-    Filters and prints filenames containing a specific keyword.
+    Identifies files using basic string membership testing via the find() method.
+
+    This is a procedural approach that iterates through the list and uses the 
+    low-level string method to check for substring existence.
 
     Args:
-        file_list (list[str]): The list of filenames to search through.
-        filter_keyword (str): The substring to search for within each filename.
+        file_list (list[str]): A list of generated filename strings.
+        filter_keyword (str): The specific substring to locate.
     """
     print(
         f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
@@ -69,11 +72,15 @@ def filter_filenames_method01(file_list: list[str], filter_keyword: str):
 
 def filter_filenames_method02(file_list: list[str], filter_keyword: str):
     """
-    Filters and prints filenames containing a specific keyword.
+    Filters files using list comprehension and highlights matches in the output.
+
+    This method demonstrates 'Pythonic' filtering using a list comprehension 
+    and the 'in' operator for better readability and performance. It 
+    visually highlights the match by wrapping the keyword in brackets.
 
     Args:
-        file_list (list[str]): The list of filenames to search through.
-        filter_keyword (str): The substring to search for within each filename.
+        file_list (list[str]): A list of generated filename strings.
+        filter_keyword (str): The specific substring to locate and highlight.
     """
     print(
         f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
@@ -91,11 +98,15 @@ def filter_filenames_method02(file_list: list[str], filter_keyword: str):
 
 def filter_filenames_method03(file_list: list[str], filter_keyword: str):
     """
-    Filters and prints filenames containing a specific keyword.
+    Filters files using functional programming and regular expressions.
+
+    Utilizes the filter() function with a lambda expression and the re.search() 
+    engine. This approach is highly scalable for complex pattern matching 
+    beyond simple substrings.
 
     Args:
-        file_list (list[str]): The list of filenames to search through.
-        filter_keyword (str): The substring to search for within each filename.
+        file_list (list[str]): A list of generated filename strings.
+        filter_keyword (str): A string or regex pattern to match against filenames.
     """
     print(
         f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
