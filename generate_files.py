@@ -77,6 +77,20 @@ def filter_filenames(file_list: list[str], filter_keyword: str):
     else:
         print(" No files found matching that keyword.")
 
+    # -----Method 03-----: Using lambda, filter(), regex filter
+    print("\n-----Method 03-----: Using lambda, filter(), regex filter")
+    import re
+
+    matches = list(filter(lambda fname: re.search(
+        filter_keyword, fname), file_list))
+
+    if matches:
+        for match in matches:
+            print(f"{match.replace(filter_keyword, "["+filter_keyword+"]")}")
+        print(f"{len(matches)} file(s) found matching that keyword.")
+    else:
+        print(" No files found matching that keyword.")
+
 
 def main():
     """
