@@ -49,7 +49,7 @@ def generate_filenames_path(no_of_files: int = 10):
     return files
 
 
-def filter_filenames(file_list: list[str], filter_keyword: str):
+def filter_filenames_method01(file_list: list[str], filter_keyword: str):
     """
     Filters and prints filenames containing a specific keyword.
 
@@ -66,6 +66,17 @@ def filter_filenames(file_list: list[str], filter_keyword: str):
         if fname.find(filter_keyword) != -1:
             print(fname)
 
+
+def filter_filenames_method02(file_list: list[str], filter_keyword: str):
+    """
+    Filters and prints filenames containing a specific keyword.
+
+    Args:
+        file_list (list[str]): The list of filenames to search through.
+        filter_keyword (str): The substring to search for within each filename.
+    """
+    print(
+        f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
     # -----Method 02-----: Using list comprehension and in to filter
     print("\n-----Method 02-----: Using list comprehension and in to filter")
     matches = [fname for fname in file_list if filter_keyword in fname]
@@ -77,6 +88,17 @@ def filter_filenames(file_list: list[str], filter_keyword: str):
     else:
         print(" No files found matching that keyword.")
 
+
+def filter_filenames_method03(file_list: list[str], filter_keyword: str):
+    """
+    Filters and prints filenames containing a specific keyword.
+
+    Args:
+        file_list (list[str]): The list of filenames to search through.
+        filter_keyword (str): The substring to search for within each filename.
+    """
+    print(
+        f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
     # -----Method 03-----: Using lambda, filter(), regex filter
     print("\n-----Method 03-----: Using lambda, filter(), regex filter")
     import re
@@ -106,7 +128,10 @@ def main():
     # 2. Filter Files
     keyword = input(
         "\nEnter keyword to filter by (default 'PROD'): ").strip() or "PROD"
-    filter_filenames(generated_files, keyword)
+
+    filter_filenames_method01(generated_files, keyword)
+    filter_filenames_method02(generated_files, keyword)
+    filter_filenames_method03(generated_files, keyword)
 
 
 if __name__ == "__main__":
