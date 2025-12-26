@@ -34,7 +34,7 @@ def generate_filenames_path(no_of_files: int = 10):
     '''
 
     files = []
-    for _ in range(no_of_files+1):
+    for _ in range(no_of_files):
         filename = (
             f"{random.choice(PROJECTS)}_"
             f"{random.choice(REGIONS)}_"
@@ -57,11 +57,25 @@ def filter_filenames(file_list: list[str], filter_keyword: str):
         file_list (list[str]): The list of filenames to search through.
         filter_keyword (str): The substring to search for within each filename.
     """
-    print(f"\nSearching for files containing: '{filter_keyword}'")
+    print(
+        f"\nSearching {len(file_list)} file(s) containing: '{filter_keyword}'")
 
+    # -----Method 01-----: Using string method find() to identify substring
+    print("\n-----Method 01-----: Using string method find() to identify substring")
     for fname in file_list:
         if fname.find(filter_keyword) != -1:
             print(fname)
+
+    # -----Method 02-----: Using list comprehension and in to filter
+    print("\n-----Method 02-----: Using list comprehension and in to filter")
+    matches = [fname for fname in file_list if filter_keyword in fname]
+
+    if matches:
+        for match in matches:
+            print(f"{match.replace(filter_keyword, "["+filter_keyword+"]")}")
+        print(f"{len(matches)} file(s) found matching that keyword.")
+    else:
+        print(" No files found matching that keyword.")
 
 
 def main():
@@ -70,6 +84,7 @@ def main():
     """
 
     # 1. Generate Files
+    count = int(input("Enter number of files to generate (default 10): ") or 10)
     generated_files = generate_filenames_path(count)
     print("\n--- Generated Files ---")
     print("\n".join(generated_files))
