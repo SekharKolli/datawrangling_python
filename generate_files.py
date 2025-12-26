@@ -21,13 +21,11 @@ def generate_filenames_path(no_of_files: int = 10):
             f"{random.choice(REGIONS)}_"
             f"{random.choice(SITE)}_"
             f"{random.choice(CONTENT)}_"
-            f"{random.choice([2025, 2026])}_"
-            f"{random.randint(1, 12)}_"
-            f"{random.randint(1, 30)}_"
+            f"{random.choice([2025, 2026])}{random.randint(1, 12)}{random.randint(1, 30)}_"
             f"V00{random.randint(1, 5)}"
             f"{random.choice(FILE_EXTENSION)}"
         )
-    files.append(filename)
+        files.append(filename)
     return files
 
 
